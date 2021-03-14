@@ -1,3 +1,9 @@
+#****************************************************************************************
+#NOTE: This code is entirely based off of Shannon Pileggi's amazing code from this blog
+#post (https://www.pipinghotdata.com/posts/2021-02-15-gganimating-a-geographic-introduction/)
+#All credit goes to her! I just thought it was a cool idea to see my boring life in this style
+#****************************************************************************************
+
 
 # Load Libs ---------------------------------------------------------------
 library(tidyverse) # general use ----
@@ -5,6 +11,7 @@ library(gganimate) # to create animated gif ----
 library(extrafont) # access and enable fonts ----
 library(ggtext)    # style text in ggplot ----
 library(glue)      # paste strings ---
+library(here)
 
 
 # Load Font(s) ------------------------------------------------------------
@@ -28,9 +35,9 @@ us_states <- ggplot2::map_data("state")
 residence <- tribble(
   ~city,           ~state,  ~lat,   ~long, ~years, ~description,
   "Whitesboro",      "NY", 43.12,  -75.29,  18,    "Childhood",
-  "Hamilton",        "NY", 42.83,  -75.54,  2.5,   "Undergrad  at Colgate University",
+  "Hamilton",        "NY", 42.83,  -75.54,  2.5,   "Student at Colgate University",
   "Washington",      "DC", 38.91,  -77.04,  0.5,   "Off-Campus Study in DC",
-  "Hamilton",        "NY", 42.83,  -75.54,  1.0,   "Undergrad  at Colgate University",
+  "Hamilton",        "NY", 42.83,  -75.54,  1.0,   "Student at Colgate University",
   "Washington",      "DC", 38.91,  -77.04,  0.25,  "Research Assistant at Federal Reserve",
   "Whitesboro",      "NY", 43.12,  -75.29,  .75,    "Work-from-home as RA at Federal Reserve",
 ) 
@@ -172,4 +179,5 @@ theme(
 # changing dimensions for output w/ height & width ----
 # increasing resolution with res ----
 animate(anim, nframes = 150, height = 2, width = 3, units = "in", res = 150)
+anim_save(here("homes_animation.gif"))
 
